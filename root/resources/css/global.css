@@ -47,3 +47,10 @@ footer
     border-top: 2px solid white;
     padding: 8px;
 }
+
+.paramInput
+{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
