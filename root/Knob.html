@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>KTaNE Home</title>
         <link rel="stylesheet" href="./resources/css/global.css">
+        <link rel="stylesheet" href="./resources/css/knob.css">
         <link rel="icon" href="/images/favicon.ico">
     </head>
         
@@ -13,7 +14,40 @@
         </header>
 
         <main>
-            
+            <div class="paramInput">
+                <label>How often to switch UP position: </label>
+                <input type="number" name="alternateAngle" value="0">
+            </div>
+
+            <div id="moduleBody">
+                <div id="arrowContainer">
+                    <div id="upArrow">UP</div>
+                    <div id="rightArrow">^</div>
+                    <div id="downArrow">^</div>
+                    <div id="leftArrow">^</div>
+                    <div id="arrow"></div>
+                </div>
+                <div id="hints">
+                    <!-- Top Row -->
+                        <div class="light" id="light1"></div>
+                        <div class="light" id="light2"></div>
+                        <div class="light" id="light3"></div>
+                        <div class="light" id="light4"></div>
+                        <div class="light" id="light5"></div>
+                        <div class="light" id="light6"></div>
+
+                    <!-- Bottom Row -->
+                        <div class="light" id="light7"></div>
+                        <div class="light" id="light8"></div>
+                        <div class="light" id="light9"></div>
+                        <div class="light" id="light10"></div>
+                        <div class="light" id="light11"></div>
+                        <div class="light" id="light12"></div>
+                </div>
+                <div id="submitBox">
+                    <button id="submitButton">Submit</button>
+                </div>
+            </div>
         </main>
 
         <footer>
@@ -23,4 +57,6 @@
             </ul>
         </footer>
     </body>
+
+    <script src="./resources/scripts/knobs.js"></script>
 </html>
