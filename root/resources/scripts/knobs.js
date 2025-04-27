@@ -20,15 +20,6 @@ function isCorrect()
 
     showAnswers();
 
-    if(arrowDir == currAnswer)
-        {
-            console.log("Correct");
-        }
-    else
-    {
-        console.log("exploded: " + currAnswer + "Your Answer: " + arrowDir);
-    }
-
     numberOfSolves++;
 
     if((numberOfSolves >= document.getElementById("rotateNum").value)&&(document.getElementById("rotateNum").value != 0))
