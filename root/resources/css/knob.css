@@ -1,0 +1,172 @@
+.paramInput
+{
+    width: fit-content;
+}
+
+.light
+{
+    border-radius: 1000px;
+    border: 3px solid black;
+    background-color: white;
+    width: 1em;
+    height: 1em;
+    position: absolute;
+}
+
+#moduleBody
+{
+    border: 3px solid black;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    width: 20em;
+    height: 20em;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #454758;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#arrowContainer
+{
+    margin-top: 1em;
+    width: 6em;
+    height: 6em;
+    border-radius: 1000px;
+    background-color: silver;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+    justify-items: center;
+    flex-shrink: 0;
+}
+
+#arrowContainer #upArrow
+{
+    grid-column-start: 2;
+    grid-row-start: 1;
+    width: fit-content;
+    height: fit-content;
+}
+
+#arrowContainer #rightArrow
+{
+    grid-column-start: 3;
+    grid-row-start: 2;
+    transform: rotate(90deg);
+    width: fit-content;
+    height: fit-content;
+}
+
+#arrowContainer #downArrow
+{
+    grid-column-start: 2;
+    grid-row-start: 3;
+    transform: rotate(180deg);
+    width: fit-content;
+    height: fit-content;
+}
+
+#arrowContainer #leftArrow
+{
+    grid-column-start: 1;
+    grid-row-start: 2;
+    transform: rotate(270deg);
+    width: fit-content;
+    height: fit-content;
+}
+
+#arrowContainer #arrow
+{
+    grid-column-start: 2;
+    grid-row-start: 2;
+    width: fit-content;
+    height: fit-content;
+}
+
+/* Light Positions */
+
+#hints
+{
+    height: 6em;
+    position: relative;
+    width: 100%;
+}
+
+/* Top Lights */
+
+#light1
+{
+    left: 3.6em;
+    top: -1.50em;
+}
+
+#light2
+{
+    left: 4.6em;
+    top: -0.2em;
+}
+
+#light3
+{
+    left: 6.05em;
+    top: 0.7em;
+}
+
+#light4
+{
+    right: 3.6em;
+    top: -1.50em;
+}
+
+#light5
+{
+    right: 4.6em;
+    top: -0.2em;
+}
+
+#light6
+{
+    right: 6.05em;
+    top: 0.7em;
+}
+
+/* Bottom Lights */
+
+#light7
+{
+    left: 1.9em;
+    top: -0.6em;
+}
+
+#light8
+{
+    left: 3.3em;
+    top: 1.25em;
+}
+
+#light9
+{
+    left: 5.44em;
+    top: 2.4em;
+}
+
+#light10
+{
+    right: 1.9em;
+    top: -0.6em;
+}
+
+#light11
+{
+    right: 3.3em;
+    top: 1.25em;
+}
+
+#light12
+{
+    right: 5.44em;
+    top: 2.4em;
+}
