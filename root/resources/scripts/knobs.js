@@ -1,15 +1,73 @@
 document.getElementById("submitButton").addEventListener("click", isCorrect);
 document.getElementById("arrow").addEventListener("click", rotateKnob);
 let arrowDir = 0;
+let currAnswer = 0;
+let numberOfSolves = 0;
+
+generateProblem();
 
 function isCorrect()
 {
-    console.log("Right");
+    if(arrowDir == currAnswer)
+        {
+            console.log("Correct");
+        }
+    else
+    {
+        console.log("exploded: " + currAnswer + "Your Answer: " + arrowDir);
+    }
+
+    numberOfSolves++;
+
+    if((numberOfSolves >= document.getElementById("rotateNum").value)&&(document.getElementById("rotateNum").value != 0))
+    {
+        rotateFace();
+        numberOfSolves = 0;
+    }
+
+    generateProblem();
 }
 
 function generateProblem()
 {
+    let problems = listAllProblems();
+    let problem = problems[Math.floor(Math.random()*problems.length)]
+    let combinedLEDs = problem.topRow.concat(problem.bottomRow);
 
+    currAnswer = problem.solve;
+
+    let lights = [];
+
+    lights.push(document.getElementById("light1"));
+    lights.push(document.getElementById("light2"));
+    lights.push(document.getElementById("light3"));
+    lights.push(document.getElementById("light6"));
+    lights.push(document.getElementById("light5"));
+    lights.push(document.getElementById("light4"));
+    lights.push(document.getElementById("light7"));
+    lights.push(document.getElementById("light8"));
+    lights.push(document.getElementById("light9"));
+    lights.push(document.getElementById("light12"));
+    lights.push(document.getElementById("light11"));
+    lights.push(document.getElementById("light10"));
+
+    console.log(problem.topRow);
+    console.log(problem.bottomRow);
+
+    let counter = 0;
+    for(let element of lights) {
+        if(combinedLEDs[counter] == 1)
+        {
+            element.classList.add("lit");
+            element.classList.remove("extinguished");
+        }
+        else
+        {
+            element.classList.remove("lit");
+            element.classList.add("extinguished");
+        }
+        counter++;
+    };
 }
 
 function rotateKnob()
@@ -26,6 +84,11 @@ function rotateKnob()
     }
 
     arrow.style.transform = "rotate("+(arrowDir*90)+"deg)";
+}
+
+function rotateFace()
+{
+    document.getElementById("arrowContainer").style.transform = "rotate(" + (Math.floor(Math.random() * 4)*90) + "deg)";
 }
 
 function listAllProblems()

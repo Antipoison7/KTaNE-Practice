@@ -13,6 +13,16 @@
     position: absolute;
 }
 
+.extinguished
+{
+    background-color: rgb(0, 29, 0);
+}
+
+.lit
+{
+    background-color: lime;
+}
+
 #moduleBody
 {
     border: 3px solid black;
