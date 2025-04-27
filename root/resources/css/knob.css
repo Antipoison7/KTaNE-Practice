@@ -170,3 +170,32 @@
     right: 5.44em;
     top: 2.4em;
 }
+
+/* Input Styles */
+
+#submitButton:hover
+{
+    cursor: pointer;
+}
+
+#arrow {
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-left: 0.45em solid transparent;
+    border-right: 0.45em solid transparent;
+    border-bottom: 1em solid rgb(40, 40, 40);
+    transform: translateY(-0.2em);
+    position: relative; /* Ensure positioning for the pseudo-element */
+}
+
+#arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -1.5em; /* Adjust to align the circle vertically */
+    left: -0.45em; /* Center the circle horizontally */
+    width: 0.9em; /* Diameter of the circle */
+    height: 0.9em; /* Diameter of the circle */
+    background-color: rgb(40, 40, 40);; /* Match the arrow color */
+    border-radius: 50%; /* Make it a circle */
+}
