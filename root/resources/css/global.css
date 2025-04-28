@@ -53,4 +53,5 @@ footer
     display: flex;
     flex-direction: column;
     color: white;
+    margin: 10px 0px;
 }
