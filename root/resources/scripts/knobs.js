@@ -112,16 +112,38 @@ function showExplanation(indexVal)
             popupContent = `<div class="away"><h3>${success}</h3> <h3 style="cursor: pointer;" onclick="closeExplanation()">x</h3></div>
             <h4>Your Answer: ${selectedAnswer}</h4>
             <h4>Correct Answer: Up</h4>
-            <p>The knob should be positioned Up if the 4th LED on the top is not lit (Right), the top row is not clear ignoring LED 5 (Left) and there is a horisontal pair of LEDs on the right side on either the top or bottom.</p>
+            <p>The knob should be positioned Up if: <br>
+            There no lit LED in the 4th position of the top row;</p>
             <div class="lightBox">
                 <div class="answerContainer">
                     <div class="light" style="position: relative;"></div>
                     <div class="light" style="position: relative;"></div>
                     <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
                     <span class="highlightContainer">
-                        <div class="light lit" style="position: relative;"></div>
-                        <div class="light lit" style="position: relative;"></div>
+                        <div class="light wrongLED" style="position: relative;"></div>
+                    </span>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+            </div>
+            <p>The top row of LEDs doesn't look like this</p>
+            <div class="lightBox">
+                <div class="answerContainer">
+                <span class="highlightContainer">
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light wrongLED" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
                     </span>
                 </div>
                 <div class="answerContainer">
@@ -133,26 +155,49 @@ function showExplanation(indexVal)
                     <div class="light" style="position: relative;"></div>
                 </div>
             </div>
+            <p>AND there is a 2 wide horisontal pair on the right side of either the top or bottom row</p>
             <div class="lightBox">
                 <div class="answerContainer">
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <span class="highlightContainer">
+                    <div class="light lit" style="position: relative;"></div>
+                    <div class="light lit" style="position: relative;"></div>
+                </span>
                 </div>
                 <div class="answerContainer">
                     <div class="light" style="position: relative;"></div>
                     <div class="light" style="position: relative;"></div>
                     <div class="light" style="position: relative;"></div>
                     <div class="light" style="position: relative;"></div>
-                    <span class="highlightContainer">
-                        <div class="light lit" style="position: relative;"></div>
-                        <div class="light lit" style="position: relative;"></div>
-                    </span>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
                 </div>
-            </div>`;
+            </div> 
+            <div class="lightBox">
+                <div class="answerContainer">
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                </div>
+                <div class="answerContainer">
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <span class="highlightContainer">
+                    <div class="light lit" style="position: relative;"></div>
+                    <div class="light lit" style="position: relative;"></div>
+                </span>
+                </div>
+            </div>
+            `;
+
             break;
 
             case 1:
@@ -188,14 +233,15 @@ function showExplanation(indexVal)
             <h4>Your Answer: ${selectedAnswer}</h4>
             <h4>Your Answer: Down</h4>
             <h4>Correct Answer: Down</h4>
-            <p>The knob should be positioned Down if the 4th LED on the top is not lit, the top row does not match being entirely off except for LED 5, there is no 2 wide horisontal pair on the right side of either the top or bottom. Basically, if it does not match any other configuration, select down.</p>
+            <p>The knob should be positioned Down if: <br>
+            There no lit LED in the 4th position of the top row;</p>
             <div class="lightBox">
                 <div class="answerContainer">
                     <div class="light" style="position: relative;"></div>
                     <div class="light" style="position: relative;"></div>
                     <div class="light" style="position: relative;"></div>
                     <span class="highlightContainer">
-                        <div class="light lit" style="position: relative;"></div>
+                        <div class="light wrongLED" style="position: relative;"></div>
                     </span>
                     <div class="light" style="position: relative;"></div>
                     <div class="light" style="position: relative;"></div>
@@ -209,35 +255,16 @@ function showExplanation(indexVal)
                     <div class="light" style="position: relative;"></div>
                 </div>
             </div>
+            <p>The top row of LEDs doesn't look like this</p>
             <div class="lightBox">
                 <div class="answerContainer">
-                <div class="highlightContainer">
+                <span class="highlightContainer">
                     <div class="light extinguished" style="position: relative;"></div>
                     <div class="light extinguished" style="position: relative;"></div>
                     <div class="light extinguished" style="position: relative;"></div>
                     <div class="light extinguished" style="position: relative;"></div>
-                    <div class="light lit" style="position: relative;"></div>
-                    <div class="light  extinguished" style="position: relative;"></div>
-                </div>
-                </div>
-                <div class="answerContainer">
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                </div>
-            </div>
-            <div class="lightBox">
-                <div class="answerContainer">
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <span class="highlightContainer">
-                        <div class="light lit" style="position: relative;"></div>
-                        <div class="light lit" style="position: relative;"></div>
+                    <div class="light wrongLED" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
                     </span>
                 </div>
                 <div class="answerContainer">
@@ -249,7 +276,18 @@ function showExplanation(indexVal)
                     <div class="light" style="position: relative;"></div>
                 </div>
             </div>
+            <p>AND there is NOT a 2 wide horisontal pair on the right side of either the top or bottom row</p>
             <div class="lightBox">
+                <div class="answerContainer">
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <span class="highlightContainer">
+                    <div class="light wrongLED" style="position: relative;"></div>
+                    <div class="light wrongLED" style="position: relative;"></div>
+                </span>
+                </div>
                 <div class="answerContainer">
                     <div class="light" style="position: relative;"></div>
                     <div class="light" style="position: relative;"></div>
@@ -258,15 +296,25 @@ function showExplanation(indexVal)
                     <div class="light" style="position: relative;"></div>
                     <div class="light" style="position: relative;"></div>
                 </div>
+            </div> 
+            <div class="lightBox">
                 <div class="answerContainer">
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <div class="light" style="position: relative;"></div>
-                    <span class="highlightContainer">
-                        <div class="light lit" style="position: relative;"></div>
-                        <div class="light lit" style="position: relative;"></div>
-                    </span>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                </div>
+                <div class="answerContainer">
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <div class="light" style="position: relative;"></div>
+                <span class="highlightContainer">
+                    <div class="light wrongLED" style="position: relative;"></div>
+                    <div class="light wrongLED" style="position: relative;"></div>
+                </span>
                 </div>
             </div>`;
             break;

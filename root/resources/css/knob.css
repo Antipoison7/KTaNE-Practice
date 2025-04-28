@@ -33,6 +33,11 @@
     background-color: lime;
 }
 
+.wrongLED
+{
+    background-color: red;
+}
+
 .lightBox
 {
     display: flex;
