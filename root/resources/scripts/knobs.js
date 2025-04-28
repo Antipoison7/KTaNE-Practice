@@ -34,7 +34,7 @@ function isCorrect()
 function generateProblem()
 {
     let problems = listAllProblems();
-    let currProblem = problems[Math.floor(Math.random()*problems.length)]
+    currProblem = problems[Math.floor(Math.random()*problems.length)]
     let combinedLEDs = currProblem.topRow.concat(currProblem.bottomRow);
 
     currAnswer = currProblem.solve;
@@ -112,6 +112,8 @@ function showExplanation(indexVal)
             popupContent = `<div class="away"><h3>${success}</h3> <h3 style="cursor: pointer;" onclick="closeExplanation()">x</h3></div>
             <h4>Your Answer: ${selectedAnswer}</h4>
             <h4>Correct Answer: Up</h4>
+            ${generateVisual(prevAttempts[indexVal].problem)}
+            <h4>Explanation</h4>
             <p>The knob should be positioned Up if: <br>
             There no lit LED in the 4th position of the top row;</p>
             <div class="lightBox">
@@ -203,8 +205,9 @@ function showExplanation(indexVal)
             case 1:
             popupContent = `<div class="away"><h3>${success}</h3> <h3 style="cursor: pointer;" onclick="closeExplanation()">x</h3></div>
             <h4>Your Answer: ${selectedAnswer}</h4>
-            <h4>Your Answer: Right</h4>
             <h4>Correct Answer: Right</h4>
+            ${generateVisual(prevAttempts[indexVal].problem)}
+            <h4>Explanation</h4>
             <p>The knob should be positioned right if the 4th LED on the top row is lit</p>
             <div class="lightBox">
                 <div class="answerContainer">
@@ -231,8 +234,9 @@ function showExplanation(indexVal)
             case 2:
             popupContent = `<div class="away"><h3>${success}</h3> <h3 style="cursor: pointer;" onclick="closeExplanation()">x</h3></div>
             <h4>Your Answer: ${selectedAnswer}</h4>
-            <h4>Your Answer: Down</h4>
             <h4>Correct Answer: Down</h4>
+            ${generateVisual(prevAttempts[indexVal].problem)}
+            <h4>Explanation</h4>
             <p>The knob should be positioned Down if: <br>
             There no lit LED in the 4th position of the top row;</p>
             <div class="lightBox">
@@ -324,6 +328,8 @@ function showExplanation(indexVal)
             <h4>Your Answer: ${selectedAnswer}</h4>
             <h4>Your Answer: Left</h4>
             <h4>Correct Answer: Left</h4>
+            ${generateVisual(prevAttempts[indexVal].problem)}
+            <h4>Explanation</h4>
             <p>The knob should be positioned left if all LEDs on the top row are off except for one in the 5th position</p>
             <div class="lightBox">
                 <div class="answerContainer">
@@ -350,6 +356,33 @@ function showExplanation(indexVal)
         
 
     popup.innerHTML = popupContent;
+}
+
+function generateVisual(problem)
+{
+                console.log(problem)
+    let returnString = "<div class=\"lightBox\">";
+
+    returnString += "<div class=\"answerContainer\">";
+    problem.topRow.forEach(val=>{
+        let formatString = "";
+        if(val == 1){formatString = " lit"} else{formatString = " extinguished"}
+        returnString += "<div class=\"light" + formatString + "\" style=\"position: relative;\"></div>";
+    });
+    returnString += "</div>";
+
+    returnString += "<div class=\"answerContainer\">";
+    problem.bottomRow.forEach(val=>{
+        let formatString = "";
+        if(val == 1){formatString = " lit"} else{formatString = " extinguished"}
+        returnString += "<div class=\"light" + formatString + "\" style=\"position: relative;\"></div>";
+    });
+    returnString += "</div>";
+    returnString += "</div>";
+
+    console.log(returnString);
+
+    return(returnString);
 }
 
 function showAnswers()
