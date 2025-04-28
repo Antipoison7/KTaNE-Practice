@@ -10,7 +10,7 @@ generateProblem();
 
 function isCorrect()
 {
-    prevAttempts.unshift(
+    prevAttempts.push(
         {
             index: prevAttempts.length,
             inputDir: arrowDir,
@@ -70,16 +70,238 @@ function generateProblem()
     };
 }
 
+function closeExplanation()
+{
+    let popup = document.getElementById("explainBox");   
+    popup.innerHTML = "";
+}
+
 function showExplanation(indexVal)
 {
-    if(prevAttempts[indexVal].inputDir == prevAttempts[indexVal].correctDir)
-    {
-        
-    }
-    else
-    {
+    let popup = document.getElementById("explainBox");
+    let popupContent = "";
 
+    const success = (prevAttempts[indexVal].inputDir == prevAttempts[indexVal].correctDir)?"Correct": "Incorrect";
+    let selectedAnswer = "";
+
+    switch(prevAttempts[indexVal].inputDir)
+        {
+            case 0:
+                selectedAnswer = "Up";
+                break;
+
+            case 1:
+                selectedAnswer = "Right";
+                break;
+
+            case 2:
+                selectedAnswer = "Down";
+                break;
+
+            case 3:
+                selectedAnswer = "Left";
+                break;
+        }
+
+        console.log(selectedAnswer);
+
+
+    switch(prevAttempts[indexVal].correctDir)
+    {
+        case 0:
+            popupContent = `<div class="away"><h3>${success}</h3> <h3 style="cursor: pointer;" onclick="closeExplanation()">x</h3></div>
+            <h4>Your Answer: ${selectedAnswer}</h4>
+            <h4>Correct Answer: Up</h4>
+            <p>The knob should be positioned Up if the 4th LED on the top is not lit (Right), the top row is not clear ignoring LED 5 (Left) and there is a horisontal pair of LEDs on the right side on either the top or bottom.</p>
+            <div class="lightBox">
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <span class="highlightContainer">
+                        <div class="light lit" style="position: relative;"></div>
+                        <div class="light lit" style="position: relative;"></div>
+                    </span>
+                </div>
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+            </div>
+            <div class="lightBox">
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <span class="highlightContainer">
+                        <div class="light lit" style="position: relative;"></div>
+                        <div class="light lit" style="position: relative;"></div>
+                    </span>
+                </div>
+            </div>`;
+            break;
+
+            case 1:
+            popupContent = `<div class="away"><h3>${success}</h3> <h3 style="cursor: pointer;" onclick="closeExplanation()">x</h3></div>
+            <h4>Your Answer: ${selectedAnswer}</h4>
+            <h4>Your Answer: Right</h4>
+            <h4>Correct Answer: Right</h4>
+            <p>The knob should be positioned right if the 4th LED on the top row is lit</p>
+            <div class="lightBox">
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <span class="highlightContainer">
+                        <div class="light lit" style="position: relative;"></div>
+                    </span>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+            </div>`;
+            break;
+
+            case 2:
+            popupContent = `<div class="away"><h3>${success}</h3> <h3 style="cursor: pointer;" onclick="closeExplanation()">x</h3></div>
+            <h4>Your Answer: ${selectedAnswer}</h4>
+            <h4>Your Answer: Down</h4>
+            <h4>Correct Answer: Down</h4>
+            <p>The knob should be positioned Down if the 4th LED on the top is not lit, the top row does not match being entirely off except for LED 5, there is no 2 wide horisontal pair on the right side of either the top or bottom. Basically, if it does not match any other configuration, select down.</p>
+            <div class="lightBox">
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <span class="highlightContainer">
+                        <div class="light lit" style="position: relative;"></div>
+                    </span>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+            </div>
+            <div class="lightBox">
+                <div class="answerContainer">
+                <div class="highlightContainer">
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light lit" style="position: relative;"></div>
+                    <div class="light  extinguished" style="position: relative;"></div>
+                </div>
+                </div>
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+            </div>
+            <div class="lightBox">
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <span class="highlightContainer">
+                        <div class="light lit" style="position: relative;"></div>
+                        <div class="light lit" style="position: relative;"></div>
+                    </span>
+                </div>
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+            </div>
+            <div class="lightBox">
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <span class="highlightContainer">
+                        <div class="light lit" style="position: relative;"></div>
+                        <div class="light lit" style="position: relative;"></div>
+                    </span>
+                </div>
+            </div>`;
+            break;
+
+            case 3:
+            popupContent = `<div class="away"><h3>${success}</h3> <h3 style="cursor: pointer;" onclick="closeExplanation()">x</h3></div>
+            <h4>Your Answer: ${selectedAnswer}</h4>
+            <h4>Your Answer: Left</h4>
+            <h4>Correct Answer: Left</h4>
+            <p>The knob should be positioned left if all LEDs on the top row are off except for one in the 5th position</p>
+            <div class="lightBox">
+                <div class="answerContainer">
+                <div class="highlightContainer">
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light extinguished" style="position: relative;"></div>
+                    <div class="light lit" style="position: relative;"></div>
+                    <div class="light  extinguished" style="position: relative;"></div>
+                </div>
+                </div>
+                <div class="answerContainer">
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                    <div class="light" style="position: relative;"></div>
+                </div>
+            </div>`;
+            break;
     }
+        
+
+    popup.innerHTML = popupContent;
 }
 
 function showAnswers()
@@ -89,10 +311,10 @@ function showAnswers()
     let innerString = "";
 
     let flipArray = prevAttempts.map(obj => ({...obj, index: obj.index, inputDir: obj.inputDir, correctDir: obj.correctDir, problem: obj.problem}));
-    flipArray;
+    flipArray.reverse();
 
     flipArray.forEach(element => {
-        innerString += "<li class=\"" + ((element.inputDir == element.correctDir)? "correctAnsw": "falseAnsw") + "\" onclick=\"showExplanation(" + element.index + ")\">";
+        innerString += "<li class=\"" + ((element.inputDir == element.correctDir)? "correctAnsw": "falseAnsw") + "\" onclick=\"showExplanation(" + element.index + ")\" style=\"cursor: pointer;\">";
 
         innerString += "Your Answer: ";
 
