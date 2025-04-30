@@ -12,6 +12,11 @@ body
     /* cursor: url(../meta/Cursor-primary.png), auto; */
 }
 
+/* body:active
+{
+    cursor: url(../meta/Cursor-clicked.png), auto;
+} */
+
 a
 {
     color: white;
