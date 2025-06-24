@@ -1,0 +1,62 @@
+.paramInput {
+	width: fit-content;
+}
+
+.correctAnsw {
+	color: green;
+}
+
+.falseAnsw {
+	color: red;
+}
+
+.light {
+	width: 1em;
+	height: 1em;
+	background-color: white;
+	border-radius: 100%;
+}
+
+#moduleBody {
+	border: 3px solid black;
+	color: white;
+	text-shadow: 1px 1px 2px black;
+	width: 90%;
+	height: 20em;
+	margin: 0px 5%;
+	background-color: #454758;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow-x: scroll;
+}
+
+#prevAttempts {
+	max-height: 7em;
+	overflow-y: scroll;
+}
+
+/* Input Styles */
+
+#submitButton:hover {
+	cursor: pointer;
+}
+
+/* Popup info box */
+
+#explainBox {
+	padding: 1px 15px 10px 15px;
+	background-color: rgb(18, 30, 30);
+}
+
+#explainBox .away {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-right: 10px;
+}
+
+#explainBox h3,
+#explainBox h4 {
+	color: white;
+}

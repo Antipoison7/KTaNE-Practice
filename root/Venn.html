@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Complex Wires Practice - KTaNE</title>
+	<meta name="author" content="Antipoison" />
+	<meta name="description"
+		content="A practice tool for Keep Talking and Nobody Explodes 'complex wires' module. Set the number of wires per round and practice without booting up the game.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="./resources/css/global.css">
+	<link rel="stylesheet" href="./resources/css/venn.css">
+	<link rel="icon" href="./resources/meta/favicon.png">
+</head>
+
+<body>
+	<header>
+		<h1><a href="./Index.html">KTaNE Practice Complex Wires</a></h1>
+	</header>
+
+	<main>
+		<div class="paramInput">
+			<label for="roundNum">How many wires per round: </label>
+			<input type="number" name="roundCount" value="6" id="roundNum" min="0">
+		</div>
+		<div class="paramInput">
+			<label for="answerType">Answer Type: </label>
+			<select name="answerType" id="answerType">
+				<option value="cutDont">Cut or Don't Cut</option>
+				<option value="cutType">Instruction Letter</option>
+			</select>
+		</div>
+
+		<div id="moduleBody">
+			<div class="light-bar">
+				<div class="light"></div>
+			</div>
+		</div>
+
+		<div id="prevAttempts"></div>
+		<div id="explainBox" class="displayNone"></div>
+	</main>
+
+	<footer>
+		<div>
+			<ul>
+				<li><a href="./Index.html">Home</a></li>
+				<li><a href="./Knob.html">Knob</a></li>
+				<li><a href="./Venn.html">Complex Wires</a></li>
+			</ul>
+		</div>
+		<div>
+			<p><a href="https://github.com/Antipoison7/KTaNE-Practice">Enjoyed the website? Check out the repo</a></p>
+		</div>
+	</footer>
+</body>
+
+<script src="./resources/scripts/knobs.js"></script>
+
+</html>
