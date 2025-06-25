@@ -17,6 +17,30 @@
 	border-radius: 100%;
 }
 
+.wire-line {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	height: 100%;
+	margin: 1em 0;
+}
+
+.star svg {
+	height: 1.5em;
+	width: 1.5em;
+	color: black;
+}
+
+.star-active svg {
+	color: yellow;
+}
+
+.wire {
+	height: 75%;
+	width: 1em;
+}
+
 /* Wire colour gradients */
 .w {
 	background-color: white;
