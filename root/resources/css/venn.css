@@ -13,8 +13,17 @@
 .light {
 	width: 1em;
 	height: 1em;
-	background-color: white;
 	border-radius: 100%;
+}
+
+.lit {
+	background-color: white;
+}
+
+.extinguished {
+	box-sizing: border-box;
+	border: 3px solid white;
+	background-color: black;
 }
 
 .wire-line {
@@ -22,14 +31,14 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	height: 100%;
-	margin: 1em 0;
+	height: 90%;
+	margin: 1% 0;
 }
 
 .star svg {
 	height: 1.5em;
 	width: 1.5em;
-	color: black;
+	color: transparent;
 }
 
 .star-active svg {
@@ -54,7 +63,7 @@
 	background-color: red;
 }
 
-.wr {
+.rw {
 	box-sizing: border-box;
 	border: 2px solid red;
 	background: linear-gradient(120deg,
@@ -80,7 +89,7 @@
 			white 100%);
 }
 
-.wb {
+.bw {
 	box-sizing: border-box;
 	border: 2px solid blue;
 	background: linear-gradient(120deg,
@@ -106,7 +115,7 @@
 			white 100%);
 }
 
-.rb {
+.br {
 	box-sizing: border-box;
 	border: 2px solid red;
 	background: linear-gradient(120deg,
@@ -142,7 +151,7 @@
 	margin: 0px 5%;
 	background-color: #454758;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: center;
 	overflow-x: scroll;
 }
