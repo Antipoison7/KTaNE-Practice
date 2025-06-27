@@ -1,3 +1,9 @@
+const roundLength = document.getElementById("roundNum").value;
+let serial = "";
+let batteries = 0;
+let port = false;
+let modules = [];
+
 const possibleCombinations = [
 	{
 		primary_colour: "White",
@@ -169,6 +175,16 @@ const possibleCombinations = [
 	}
 ];
 
+function generateProblems(problemCount){
+	modules = [];
+
+	for(let i = 0; i < problemCount; i++){
+		modules.push(getRand(possibleCombinations));
+	}
+
+	console.log(modules);
+}
+
 function renderOption(option){
 	let newWire = document.createElement("div");
 	newWire.classList.add("wire-line");
@@ -197,14 +213,42 @@ function renderOption(option){
 	document.getElementById("moduleBody").append(newWire);
 }
 
+function createSerial(){
+	serial = generateSerial();
+	document.getElementById("seri").innerHTML = serial;
+}
+
+function generateBatteries(){
+	batteries = batteryCount();
+	document.getElementById("batts").innerHTML = batteries;
+}
+
+function generatePort(){
+	port = parralelPort();
+	document.getElementById("parr").innerHTML = port;
+}
+
 function clearModule(){
 	document.getElementById("moduleBody").innerHTML = "";
 }
 
-console.log(possibleCombinations);
-clearModule();
-
-for(let i = 0; i < 100; i++){
-	console.log(i);
-	renderOption(getRand(possibleCombinations));
+function init(){
+	clearModule();
+	createSerial();
+	populateWidgets();
+	generateBatteries();
+	generatePort();
 }
+
+function loadProblems(){
+	modules.forEach((e)=>{
+		renderOption(e);
+	});
+}
+
+init();
+
+generateProblems(roundLength);
+
+loadProblems();
+
