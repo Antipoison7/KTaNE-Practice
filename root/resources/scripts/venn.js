@@ -175,11 +175,102 @@ const possibleCombinations = [
 	}
 ];
 
+function isEven(number){
+	if(number == 0){
+		return true
+	}
+	else if(number%2){
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+function solveProblem(inputProblem){
+	if(inputProblem.primary_colour === "White"){
+		if(inputProblem.led){
+			if(inputProblem.star){
+				inputProblem.cutState = (batteries >= 2);
+			}
+			else{
+				inputProblem.cutState = false;
+			}
+		}
+		else{
+			if(inputProblem.star){
+				inputProblem.cutState = true;
+			}
+			else{
+				inputProblem.cutState = true;
+			}
+		}
+	}
+	else if(inputProblem.primary_colour === "Blue" && inputProblem.secondary_colour === "Red"){
+		if(inputProblem.led){
+			if(inputProblem.star){
+				inputProblem.cutState = false;
+			}
+			else{
+				inputProblem.cutState = isEven(serial.substr(serial.length-1));
+			}
+		}
+		else{
+			if(inputProblem.star){
+				inputProblem.cutState = port;
+			}
+			else{
+				inputProblem.cutState = isEven(serial.substr(serial.length-1));
+			}
+		}
+	}
+	else if(inputProblem.primary_colour === "Red"){
+		if(inputProblem.led){
+			if(inputProblem.star){
+				inputProblem.cutState = (batteries >= 2);
+			}
+			else{
+				inputProblem.cutState = (batteries >= 2);
+			}
+		}
+		else{
+			if(inputProblem.star){
+				inputProblem.cutState = true;
+			}
+			else{
+				inputProblem.cutState = isEven(serial.substr(serial.length-1));
+			}
+		}
+	}
+	else if(inputProblem.primary_colour === "Blue"){
+		if(inputProblem.led){
+			if(inputProblem.star){
+				inputProblem.cutState = port;
+			}
+			else{
+				inputProblem.cutState = port;
+			}
+		}
+		else{
+			if(inputProblem.star){
+				inputProblem.cutState = false;
+			}
+			else{
+				inputProblem.cutState = isEven(serial.substr(serial.length-1));
+			}
+		}
+	}
+}
+
 function generateProblems(problemCount){
 	modules = [];
 
 	for(let i = 0; i < problemCount; i++){
-		modules.push(getRand(possibleCombinations));
+		let randomWire = getRand(possibleCombinations) 
+		
+		solveProblem(randomWire);
+
+		modules.push(randomWire);
 	}
 
 	console.log(modules);
