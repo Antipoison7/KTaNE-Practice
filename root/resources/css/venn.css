@@ -10,6 +10,14 @@
 	color: red;
 }
 
+.rightCut {
+	background-color: green;
+}
+
+.wrongCut {
+	background-color: darkred;
+}
+
 .light {
 	width: 1em;
 	height: 1em;
