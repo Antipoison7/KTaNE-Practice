@@ -32,7 +32,12 @@
 	align-items: center;
 	justify-content: space-between;
 	height: 90%;
-	margin: 1% 0;
+	padding: 5% 0;
+}
+
+.wire-line:hover {
+	cursor: pointer;
+	background-color: #30313d;
 }
 
 .star svg {
@@ -166,6 +171,7 @@
 	flex-direction: row;
 	align-items: center;
 	overflow-x: scroll;
+	overflow-y: hidden;
 }
 
 #prevAttempts {
