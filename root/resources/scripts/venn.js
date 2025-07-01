@@ -1,8 +1,17 @@
-const roundLength = document.getElementById("roundNum").value;
+let roundLength = document.getElementById("roundNum").value;
 let serial = "";
 let batteries = 0;
 let port = false;
 let modules = [];
+
+//TODO: Update possibleCombinations to dynamically create the answer: field
+
+document.getElementById("roundNum").addEventListener("input", ()=>{
+	roundLength = document.getElementById("roundNum").value;
+	init();
+	generateProblems(roundLength);
+	loadProblems();
+});
 
 const possibleCombinations = [
 	{

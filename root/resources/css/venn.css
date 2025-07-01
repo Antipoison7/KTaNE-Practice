@@ -22,6 +22,7 @@
 	width: 1em;
 	height: 1em;
 	border-radius: 100%;
+	box-sizing: border-box;
 }
 
 .lit {
@@ -29,7 +30,6 @@
 }
 
 .extinguished {
-	box-sizing: border-box;
 	border: 3px solid white;
 	background-color: black;
 }
