@@ -4,7 +4,6 @@ let batteries = 0;
 let port = false;
 let modules = [];
 
-//TODO: Update possibleCombinations to dynamically create the answer: field
 
 document.getElementById("roundNum").addEventListener("input", ()=>{
 	roundLength = document.getElementById("roundNum").value;
@@ -18,169 +17,145 @@ const possibleCombinations = [
 		primary_colour: "White",
 		secondary_colour: false,
 		led: false,
-		star: false,
-		answer: "Cut"
+		star: false
 	},
 	{
 		primary_colour: "White",
 		secondary_colour: false,
 		led: false,
-		star: true,
-		answer: "Cut"
+		star: true
 	},
 	{
 		primary_colour: "White",
 		secondary_colour: false,
 		led: true,
-		star: false,
-		answer: "Dont"
+		star: false
 	},
 	{
 		primary_colour: "White",
 		secondary_colour: false,
 		led: true,
-		star: true,
-		answer: "Bat"
+		star: true
 	},
 	{
 		primary_colour: "Red",
 		secondary_colour: false,
 		led: false,
-		star: false,
-		answer: "Serial"
+		star: false
 	},
 	{
 		primary_colour: "Red",
 		secondary_colour: false,
 		led: false,
-		star: true,
-		answer: "Cut"
+		star: true
 	},
 	{
 		primary_colour: "Red",
 		secondary_colour: false,
 		led: true,
-		star: false,
-		answer: "Bat"
+		star: false
 	},
 	{
 		primary_colour: "Red",
 		secondary_colour: false,
 		led: true,
-		star: true,
-		answer: "Bat"
+		star: true
 	},
 	{
 		primary_colour: "Red",
 		secondary_colour: "White",
 		led: false,
-		star: false,
-		answer: "Serial"
+		star: false
 	},
 	{
 		primary_colour: "Red",
 		secondary_colour: "White",
 		led: false,
-		star: true,
-		answer: "Cut"
+		star: true
 	},
 	{
 		primary_colour: "Red",
 		secondary_colour: "White",
 		led: true,
-		star: false,
-		answer: "Bat"
+		star: false
 	},
 	{
 		primary_colour: "Red",
 		secondary_colour: "White",
 		led: true,
-		star: true,
-		answer: "Bat"
+		star: true
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: false,
 		led: false,
-		star: false,
-		answer: "Serial"
+		star: false
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: false,
 		led: false,
-		star: true,
-		answer: "Dont"
+		star: true
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: false,
 		led: true,
-		star: false,
-		answer: "Port"
+		star: false
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: false,
 		led: true,
-		star: true,
-		answer: "Port"
+		star: true
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: "White",
 		led: false,
-		star: false,
-		answer: "Serial"
+		star: false
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: "White",
 		led: false,
-		star: true,
-		answer: "Dont"
+		star: true
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: "White",
 		led: true,
-		star: false,
-		answer: "Port"
+		star: false
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: "White",
 		led: true,
-		star: true,
-		answer: "Port"
+		star: true
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: "Red",
 		led: false,
-		star: false,
-		answer: "Serial"
+		star: false
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: "Red",
 		led: false,
-		star: true,
-		answer: "Port"
+		star: true
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: "Red",
 		led: true,
-		star: false,
-		answer: "Serial"
+		star: false
 	},
 	{
 		primary_colour: "Blue",
 		secondary_colour: "Red",
 		led: true,
-		star: true,
-		answer: "Dont"
+		star: true
 	}
 ];
 
@@ -200,17 +175,21 @@ function solveProblem(inputProblem){
 	if(inputProblem.primary_colour === "White"){
 		if(inputProblem.led){
 			if(inputProblem.star){
+				inputProblem.answer = "Bat";
 				inputProblem.cutState = (batteries >= 2);
 			}
 			else{
+				inputProblem.answer = "Dont";
 				inputProblem.cutState = false;
 			}
 		}
 		else{
 			if(inputProblem.star){
+				inputProblem.answer = "Cut";
 				inputProblem.cutState = true;
 			}
 			else{
+				inputProblem.answer = "Cut";
 				inputProblem.cutState = true;
 			}
 		}
@@ -218,17 +197,21 @@ function solveProblem(inputProblem){
 	else if(inputProblem.primary_colour === "Blue" && inputProblem.secondary_colour === "Red"){
 		if(inputProblem.led){
 			if(inputProblem.star){
+				inputProblem.answer = "Dont";
 				inputProblem.cutState = false;
 			}
 			else{
+				inputProblem.answer = "Serial";
 				inputProblem.cutState = isEven(serial.substr(serial.length-1));
 			}
 		}
 		else{
 			if(inputProblem.star){
+				inputProblem.answer = "Port";
 				inputProblem.cutState = port;
 			}
 			else{
+				inputProblem.answer = "Serial";
 				inputProblem.cutState = isEven(serial.substr(serial.length-1));
 			}
 		}
@@ -236,17 +219,21 @@ function solveProblem(inputProblem){
 	else if(inputProblem.primary_colour === "Red"){
 		if(inputProblem.led){
 			if(inputProblem.star){
+				inputProblem.answer = "Bat";
 				inputProblem.cutState = (batteries >= 2);
 			}
 			else{
+				inputProblem.answer = "Bat";
 				inputProblem.cutState = (batteries >= 2);
 			}
 		}
 		else{
 			if(inputProblem.star){
+				inputProblem.answer = "Cut";
 				inputProblem.cutState = true;
 			}
 			else{
+				inputProblem.answer = "Serial";
 				inputProblem.cutState = isEven(serial.substr(serial.length-1));
 			}
 		}
@@ -254,17 +241,21 @@ function solveProblem(inputProblem){
 	else if(inputProblem.primary_colour === "Blue"){
 		if(inputProblem.led){
 			if(inputProblem.star){
+				inputProblem.answer = "Port";
 				inputProblem.cutState = port;
 			}
 			else{
+				inputProblem.answer = "Port";
 				inputProblem.cutState = port;
 			}
 		}
 		else{
 			if(inputProblem.star){
+				inputProblem.answer = "Dont";
 				inputProblem.cutState = false;
 			}
 			else{
+				inputProblem.answer = "Serial";
 				inputProblem.cutState = isEven(serial.substr(serial.length-1));
 			}
 		}
