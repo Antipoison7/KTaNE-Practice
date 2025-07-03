@@ -11,11 +11,11 @@
 }
 
 .rightCut {
-	background-color: green;
+	background-color: green !important;
 }
 
 .wrongCut {
-	background-color: darkred;
+	background-color: darkred !important;
 }
 
 .light {
@@ -45,7 +45,7 @@
 
 .wire-line:hover {
 	cursor: pointer;
-	background-color: #30313d;
+	filter: brightness(50%);
 }
 
 .star svg {
