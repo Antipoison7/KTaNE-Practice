@@ -25,7 +25,7 @@ function generateSerial(){
 	serial += randomCharacter();
 	serial += randomNumber();
 
-	console.log(serial);
+	//console.log(serial);
 
 	return serial;
 }

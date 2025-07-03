@@ -296,7 +296,7 @@ function generateProblems(problemCount){
 		wires.push(randomWire);
 	}
 
-	console.log(wires);
+	//console.log(wires);
 }
 
 // Checks each wire in the wires array to see if the module is defused
@@ -336,8 +336,7 @@ function cutWire(index){
 function saveAttempt(){
 	attempts.push(wires);
 	renderAttempts();
-	alert("Bomb Defused");
-	console.log("Attempts", attempts);
+	//console.log("Attempts", attempts);
 }
 
 // Renders the attempts into a div with text that expands to a full page display on click
@@ -346,6 +345,8 @@ function renderAttempts(){
 	attemptBox.innerHTML = "";
 
 	attempts.forEach((attempt, index)=>{
+		//console.log("Written", index);
+
 		// Generates the outer div as well as the text and fullscreen overlay
 		let newAttempt = document.createElement("div");
 		let newText = document.createElement("p");
