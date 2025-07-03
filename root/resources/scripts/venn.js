@@ -1,4 +1,5 @@
 let roundLength = document.getElementById("roundNum").value;
+let attempts = [];
 let serial = "";
 let batteries = 0;
 let port = false;
@@ -177,20 +178,28 @@ function solveProblem(inputProblem){
 			if(inputProblem.star){
 				inputProblem.answer = "Bat";
 				inputProblem.cutState = (batteries >= 2);
+				inputProblem.solved = !(batteries >= 2);
+				inputProblem.correct = !(batteries >= 2);
 			}
 			else{
 				inputProblem.answer = "Dont";
 				inputProblem.cutState = false;
+				inputProblem.solved = true;
+				inputProblem.correct = true;
 			}
 		}
 		else{
 			if(inputProblem.star){
 				inputProblem.answer = "Cut";
 				inputProblem.cutState = true;
+				inputProblem.solved = false;
+				inputProblem.correct = false;
 			}
 			else{
 				inputProblem.answer = "Cut";
 				inputProblem.cutState = true;
+				inputProblem.solved = false;
+				inputProblem.correct = false;
 			}
 		}
 	}
@@ -199,20 +208,28 @@ function solveProblem(inputProblem){
 			if(inputProblem.star){
 				inputProblem.answer = "Dont";
 				inputProblem.cutState = false;
+				inputProblem.solved = true;
+				inputProblem.correct = true;
 			}
 			else{
 				inputProblem.answer = "Serial";
 				inputProblem.cutState = isEven(serial.substr(serial.length-1));
+				inputProblem.solved = !isEven(serial.substr(serial.length-1));
+				inputProblem.correct = !isEven(serial.substr(serial.length-1));
 			}
 		}
 		else{
 			if(inputProblem.star){
 				inputProblem.answer = "Port";
 				inputProblem.cutState = port;
+				inputProblem.solved = !port;
+				inputProblem.correct = !port;
 			}
 			else{
 				inputProblem.answer = "Serial";
 				inputProblem.cutState = isEven(serial.substr(serial.length-1));
+				inputProblem.solved = !isEven(serial.substr(serial.length-1));
+				inputProblem.correct = !isEven(serial.substr(serial.length-1));
 			}
 		}
 	}
@@ -221,20 +238,28 @@ function solveProblem(inputProblem){
 			if(inputProblem.star){
 				inputProblem.answer = "Bat";
 				inputProblem.cutState = (batteries >= 2);
+				inputProblem.solved = !(batteries >= 2);
+				inputProblem.correct = !(batteries >= 2);
 			}
 			else{
 				inputProblem.answer = "Bat";
 				inputProblem.cutState = (batteries >= 2);
+				inputProblem.solved = !(batteries >= 2);
+				inputProblem.correct = !(batteries >= 2);
 			}
 		}
 		else{
 			if(inputProblem.star){
 				inputProblem.answer = "Cut";
 				inputProblem.cutState = true;
+				inputProblem.solved = false;
+				inputProblem.correct = false;
 			}
 			else{
 				inputProblem.answer = "Serial";
 				inputProblem.cutState = isEven(serial.substr(serial.length-1));
+				inputProblem.solved = !isEven(serial.substr(serial.length-1));
+				inputProblem.correct = !isEven(serial.substr(serial.length-1));
 			}
 		}
 	}
@@ -243,20 +268,28 @@ function solveProblem(inputProblem){
 			if(inputProblem.star){
 				inputProblem.answer = "Port";
 				inputProblem.cutState = port;
+				inputProblem.solved = !port;
+				inputProblem.correct = !port;
 			}
 			else{
 				inputProblem.answer = "Port";
 				inputProblem.cutState = port;
+				inputProblem.solved = !port;
+				inputProblem.correct = !port;
 			}
 		}
 		else{
 			if(inputProblem.star){
 				inputProblem.answer = "Dont";
 				inputProblem.cutState = false;
+				inputProblem.solved = true;
+				inputProblem.correct = true;
 			}
 			else{
 				inputProblem.answer = "Serial";
 				inputProblem.cutState = isEven(serial.substr(serial.length-1));
+				inputProblem.solved = !isEven(serial.substr(serial.length-1));
+				inputProblem.correct = !isEven(serial.substr(serial.length-1));
 			}
 		}
 	}
@@ -276,9 +309,44 @@ function generateProblems(problemCount){
 	console.log(modules);
 }
 
-function renderOption(option){
+function isDefused(){
+	let defused = true;
+
+	modules.forEach((e)=>{
+		if(!e.solved){
+			defused = false;
+		}
+	});
+
+	return defused;
+}
+
+function cutWire(index){
+	if(modules[index].cutState){
+		document.getElementById("Wire" + index).classList.add("rightCut");
+		modules[index].solved = true;
+		modules[index].correct = true;
+	}
+	else{
+		document.getElementById("Wire" + index).classList.add("wrongCut");
+		modules[index].solved = true;
+		modules[index].correct = false;
+	}
+
+	if(isDefused()){
+		attempts.push(modules);
+		alert("Bomb Defused");
+	}
+}
+
+
+function renderOption(option, index){
 	let newWire = document.createElement("div");
 	newWire.classList.add("wire-line");
+	newWire.id = "Wire"+index;
+	newWire.onclick = () => {
+		cutWire(index);
+	};
 	
 	let wireColour = "";
 
@@ -332,8 +400,8 @@ function init(){
 }
 
 function loadProblems(){
-	modules.forEach((e)=>{
-		renderOption(e);
+	modules.forEach((e, index)=>{
+		renderOption(e, index);
 	});
 }
 
