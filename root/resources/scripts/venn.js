@@ -3,7 +3,7 @@ let attempts = [];
 let serial = "";
 let batteries = 0;
 let port = false;
-let modules = [];
+let wires = [];
 
 
 document.getElementById("roundNum").addEventListener("input", ()=>{
@@ -213,9 +213,9 @@ function solveProblem(inputProblem){
 			}
 			else{
 				inputProblem.answer = "Serial";
-				inputProblem.cutState = isEven(serial.substr(serial.length-1));
-				inputProblem.solved = !isEven(serial.substr(serial.length-1));
-				inputProblem.correct = !isEven(serial.substr(serial.length-1));
+				inputProblem.cutState = !(serial.substr(serial.length-1)%2);
+				inputProblem.solved = (serial.substr(serial.length-1)%2);
+				inputProblem.correct = (serial.substr(serial.length-1)%2);
 			}
 		}
 		else{
@@ -227,9 +227,9 @@ function solveProblem(inputProblem){
 			}
 			else{
 				inputProblem.answer = "Serial";
-				inputProblem.cutState = isEven(serial.substr(serial.length-1));
-				inputProblem.solved = !isEven(serial.substr(serial.length-1));
-				inputProblem.correct = !isEven(serial.substr(serial.length-1));
+				inputProblem.cutState = !(serial.substr(serial.length-1)%2);
+				inputProblem.solved = (serial.substr(serial.length-1)%2);
+				inputProblem.correct = (serial.substr(serial.length-1)%2);
 			}
 		}
 	}
@@ -257,9 +257,9 @@ function solveProblem(inputProblem){
 			}
 			else{
 				inputProblem.answer = "Serial";
-				inputProblem.cutState = isEven(serial.substr(serial.length-1));
-				inputProblem.solved = !isEven(serial.substr(serial.length-1));
-				inputProblem.correct = !isEven(serial.substr(serial.length-1));
+				inputProblem.cutState = !(serial.substr(serial.length-1)%2);
+				inputProblem.solved = (serial.substr(serial.length-1)%2);
+				inputProblem.correct = (serial.substr(serial.length-1)%2);
 			}
 		}
 	}
@@ -287,32 +287,32 @@ function solveProblem(inputProblem){
 			}
 			else{
 				inputProblem.answer = "Serial";
-				inputProblem.cutState = isEven(serial.substr(serial.length-1));
-				inputProblem.solved = !isEven(serial.substr(serial.length-1));
-				inputProblem.correct = !isEven(serial.substr(serial.length-1));
+				inputProblem.cutState = !(serial.substr(serial.length-1)%2);
+				inputProblem.solved = (serial.substr(serial.length-1)%2);
+				inputProblem.correct = (serial.substr(serial.length-1)%2);
 			}
 		}
 	}
 }
 
 function generateProblems(problemCount){
-	modules = [];
+	wires = [];
 
 	for(let i = 0; i < problemCount; i++){
 		let randomWire = getRand(possibleCombinations) 
 		
 		solveProblem(randomWire);
 
-		modules.push(randomWire);
+		wires.push(randomWire);
 	}
 
-	console.log(modules);
+	console.log(wires);
 }
 
 function isDefused(){
 	let defused = true;
 
-	modules.forEach((e)=>{
+	wires.forEach((e)=>{
 		if(!e.solved){
 			defused = false;
 		}
@@ -322,19 +322,19 @@ function isDefused(){
 }
 
 function cutWire(index){
-	if(modules[index].cutState){
+	if(wires[index].cutState){
 		document.getElementById("Wire" + index).classList.add("rightCut");
-		modules[index].solved = true;
-		modules[index].correct = true;
+		wires[index].solved = true;
+		wires[index].correct = true;
 	}
 	else{
 		document.getElementById("Wire" + index).classList.add("wrongCut");
-		modules[index].solved = true;
-		modules[index].correct = false;
+		wires[index].solved = true;
+		wires[index].correct = false;
 	}
 
 	if(isDefused()){
-		attempts.push(modules);
+		attempts.push(wires);
 		alert("Bomb Defused");
 	}
 }
@@ -400,7 +400,7 @@ function init(){
 }
 
 function loadProblems(){
-	modules.forEach((e, index)=>{
+	wires.forEach((e, index)=>{
 		renderOption(e, index);
 	});
 }
