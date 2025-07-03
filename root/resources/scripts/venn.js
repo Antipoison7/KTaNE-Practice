@@ -284,6 +284,7 @@ function solveProblem(inputProblem){
 	}
 }
 
+// Generates wires depending on the number specified in the input roundNum/roundCount
 function generateProblems(problemCount){
 	wires = [];
 
@@ -298,6 +299,7 @@ function generateProblems(problemCount){
 	console.log(wires);
 }
 
+// Checks each wire in the wires array to see if the module is defused
 function isDefused(){
 	let defused = true;
 
@@ -310,6 +312,7 @@ function isDefused(){
 	return defused;
 }
 
+// Function that checks to see if cutting the wire was the correct answer and runs something if the module is defused
 function cutWire(index){
 	if(wires[index].cutState){
 		document.getElementById("Wire" + index).classList.add("rightCut");
@@ -328,7 +331,7 @@ function cutWire(index){
 	}
 }
 
-
+// Renders a wire and sets up the onclick for it
 function renderOption(option, index){
 	let newWire = document.createElement("div");
 	newWire.classList.add("wire-line");
@@ -361,6 +364,8 @@ function renderOption(option, index){
 	document.getElementById("moduleBody").append(newWire);
 }
 
+// Cleanup and setup functions
+// --START--
 function createSerial(){
 	serial = generateSerial();
 	document.getElementById("seri").innerHTML = serial;
@@ -379,7 +384,9 @@ function generatePort(){
 function clearModule(){
 	document.getElementById("moduleBody").innerHTML = "";
 }
+// --END--
 
+// Runs the creating and cleanup functions when generating new problems
 function init(){
 	clearModule();
 	createSerial();
@@ -388,6 +395,7 @@ function init(){
 	generatePort();
 }
 
+// Runs the render function for every problem in the wires array
 function loadProblems(){
 	wires.forEach((e, index)=>{
 		renderOption(e, index);
@@ -395,13 +403,13 @@ function loadProblems(){
 }
 
 function startup(){
-	// Clears out all the modules and generates the bomb widgets such as ports and sets the local values for the battery displays
+	// Clears out all the wires and generates the bomb widgets such as ports and sets the local values for the battery displays
 	init();
 
-	// Populates the modules array with problems specified in the input field
+	// Populates the wires array with problems specified in the input field
 	generateProblems(roundLength);
 
-	// Renders the wires described in the modules array
+	// Renders the wires described in the wires array
 	loadProblems();
 
 	// If the bomb is already solved, run the function again until a valid wire setup occurs
