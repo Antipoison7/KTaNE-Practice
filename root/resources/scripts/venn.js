@@ -341,25 +341,143 @@ function saveAttempt(){
 
 // Renders the attempts into a div with text that expands to a full page display on click
 function renderAttempts(){
-	const attemptBox = document.getElementById("prevAttempts");
+	const attemptBox = document.getElementById("prev-attempts");
 	attemptBox.innerHTML = "";
 
 	attempts.forEach((attempt, index)=>{
 		//console.log("Written", index);
 
 		// Generates the outer div as well as the text and fullscreen overlay
-		let newAttempt = document.createElement("div");
-		let newText = document.createElement("p");
-		let attemptOverlay = document.createElement("div");
+		const newAttempt = document.createElement("div");
+		newAttempt.classList.add("attempt");
+		const newText = document.createElement("p");
+		const titleText = document.createElement("p");
+		const attemptOverlay = document.createElement("div");
 
 		newText.innerText = `Attempt ${index+1}: ${countSuccess(attempt)}/${attempt.length}`;
+		newText.onclick = () => {showToggle(index)};
+		titleText.innerText = `Attempt ${index+1}: ${countSuccess(attempt)}/${attempt.length}`;
 		newAttempt.append(newText);
 
-		attemptOverlay.innerHTML = "<p>Text Here</p>";
+		attemptOverlay.classList.add("attempt-display");
+		attemptOverlay.classList.add("displayNone");
+		attemptOverlay.id = "attempt" + index;
+
+		// Generate the header for the overlay
+		const attemptHeader = document.createElement("div");
+		const closeButton = document.createElement("p");
+		closeButton.classList.add("close-button");
+		closeButton.onclick = () => {showToggle(index)};
+		closeButton.innerText = "X";
+		attemptHeader.classList.add("attempt-header");
+		attemptHeader.append(titleText);
+		attemptHeader.append(closeButton);
+
+		attemptOverlay.append(attemptHeader);
+
+		// Generate the table for the attempt
+		const table = document.createElement("table");
+		const tableHead = document.createElement("tr");
+
+		const th1 = document.createElement("th");
+		th1.innerText = "Correct Answer";
+		tableHead.append(th1);
+		const th2 = document.createElement("th");
+		th2.innerText = "Your Answer";
+		tableHead.append(th2);
+		const th3 = document.createElement("th");
+		th3.innerText = "Description";
+		tableHead.append(th3);
+		const th4 = document.createElement("th");
+		th4.innerText = "Cut Type";
+		tableHead.append(th4);
+		table.append(tableHead);
+
+		attempt.forEach((wire)=>{
+			const tableRow = document.createElement("tr");
+			const correct = document.createElement("td");
+			const your = document.createElement("td");
+			const description = document.createElement("td");
+			const type = document.createElement("td");
+
+			correct.innerHTML = wire.cutState? "Cut" : "Don't Cut";
+
+			your.innerHTML = wire.correct? wire.cutState? "<span class=\"correct-text\">Cut</span>" : "<span class=\"correct-text\">Not Cut</span>" : !wire.cutState? "<span class=\"incorrect-text\">Cut</span>" : "<span class=\"incorrect-text\">Not Cut</span>";
+
+			let descriptionString = "";
+
+			if(wire.primary_colour === "Red"){
+				descriptionString += "<span class=\"red-text\">";
+			}
+			else if(wire.primary_colour === "Blue"){
+				descriptionString += "<span class=\"blue-text\">";
+			}
+			else{
+				descriptionString += "<span>";
+			}
+
+			descriptionString += wire.primary_colour + "</span>";
+
+			if(wire.secondary_colour){
+				if(wire.secondary_colour === "Red"){
+					descriptionString += "<span class=\"red-text\">";
+				}
+				else if(wire.secondary_colour === "Blue"){
+					descriptionString += "<span class=\"blue-text\">";
+				}
+				else{
+					descriptionString += "<span>";
+				}
+				
+				descriptionString += " + " + wire.secondary_colour;
+
+				descriptionString += "</span>";
+			}
+
+			descriptionString += " | ";
+
+			descriptionString += wire.led ? "LED | " : "<span class=\"dim\">No LED</span> | ";
+
+			descriptionString += wire.star ? "<span class=\"star-text\">Star</span>" : "No Star";
+
+			description.innerHTML = descriptionString;
+
+			if(wire.answer === "Cut"){
+				type.innerHTML = "Always Cut";
+			}
+			else if(wire.answer === "Dont"){
+				type.innerHTML = "Don't Cut";
+			}
+			else if(wire.answer === "Serial"){
+				type.innerHTML = "Last digit of serial = Even";
+			}
+			else if(wire.answer === "Bat"){
+				type.innerHTML = "2+ batteries";
+			}
+			else if(wire.answer === "Port"){
+				type.innerHTML = "Parralel Port Present";
+			}
+
+			tableRow.append(correct);
+			tableRow.append(your);
+			tableRow.append(description);
+			tableRow.append(type);
+
+			table.append(tableRow);
+		});
+
+		attemptOverlay.append(table);
+
 		newAttempt.append(attemptOverlay);
 
 		attemptBox.prepend(newAttempt);
 	});
+}
+
+function showToggle(index){
+	const selectedDom = document.getElementById("attempt" + index);
+
+	selectedDom.classList.toggle("displayNone");
 }
 
 //Helper function to get the number of successful responses

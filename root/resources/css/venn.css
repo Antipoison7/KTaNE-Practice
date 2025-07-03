@@ -152,9 +152,79 @@
 			red 90%,
 			blue 90%,
 			blue 100%);
-
 }
 
+.attempt>p:first-child:hover {
+	cursor: pointer;
+	color: salmon;
+}
+
+.attempt-display {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 88vw;
+	height: 88vh;
+	padding: 1vh 1vw;
+	margin: 5vh 5vw;
+	background-color: #1e1e21;
+	overflow-y: scroll;
+}
+
+.attempt-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.attempt-display p {
+	margin: 10px;
+}
+
+.attempt-display table {
+	font-size: 0.9em;
+	color: white;
+	border-collapse: collapse;
+}
+
+.attempt-display th,
+.attempt-display td {
+	border: 1px solid white;
+	padding: 0.3em;
+}
+
+.close-button:hover {
+	cursor: pointer;
+	color: salmon;
+}
+
+
+/* Text Highlighting */
+.correct-text {
+	color: green;
+}
+
+.incorrect-text {
+	color: red;
+}
+
+.dim {
+	color: gray;
+}
+
+.star-text {
+	color: yellow;
+}
+
+.red-text {
+	color: red;
+}
+
+.blue-text {
+	color: mediumblue;
+}
+
+/* ID Styling */
 #additional-info {
 	display: flex;
 	flex-direction: row;
