@@ -405,9 +405,21 @@ function loadProblems(){
 	});
 }
 
-init();
+function startup(){
+	// Clears out all the modules and generates the bomb widgets such as ports and sets the local values for the battery displays
+	init();
 
-generateProblems(roundLength);
+	// Populates the modules array with problems specified in the input field
+	generateProblems(roundLength);
 
-loadProblems();
+	// Renders the wires described in the modules array
+	loadProblems();
 
+	// If the bomb is already solved, run the function again until a valid wire setup occurs
+	if(isDefused()){
+		console.log("Already solved, reloading");
+		startup();
+	}
+}
+
+startup();
