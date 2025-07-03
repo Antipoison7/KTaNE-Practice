@@ -326,9 +326,52 @@ function cutWire(index){
 	}
 
 	if(isDefused()){
-		attempts.push(wires);
-		alert("Bomb Defused");
+		saveAttempt();
+		startup();
 	}
+}
+
+// Functions that handle the attempts
+// Saves attempts and then calls the function to render them
+function saveAttempt(){
+	attempts.push(wires);
+	renderAttempts();
+	alert("Bomb Defused");
+	console.log("Attempts", attempts);
+}
+
+// Renders the attempts into a div with text that expands to a full page display on click
+function renderAttempts(){
+	const attemptBox = document.getElementById("prevAttempts");
+	attemptBox.innerHTML = "";
+
+	attempts.forEach((attempt, index)=>{
+		// Generates the outer div as well as the text and fullscreen overlay
+		let newAttempt = document.createElement("div");
+		let newText = document.createElement("p");
+		let attemptOverlay = document.createElement("div");
+
+		newText.innerText = `Attempt ${index+1}: ${countSuccess(attempt)}/${attempt.length}`;
+		newAttempt.append(newText);
+
+		attemptOverlay.innerHTML = "<p>Text Here</p>";
+		newAttempt.append(attemptOverlay);
+
+		attemptBox.prepend(newAttempt);
+	});
+}
+
+//Helper function to get the number of successful responses
+function countSuccess(attempt){
+	let count = 0;
+
+	attempt.forEach((e)=>{
+		if(e.correct){
+			count++;
+		}
+	});
+
+	return count;
 }
 
 // Renders a wire and sets up the onclick for it
