@@ -160,18 +160,7 @@ const possibleCombinations = [
 	}
 ];
 
-function isEven(number){
-	if(number == 0){
-		return true
-	}
-	else if(number%2){
-		return false;
-	}
-	else{
-		return true;
-	}
-}
-
+// Sets parameters in the wire input depending on if it should be cut or not
 function solveProblem(inputProblem){
 	if(inputProblem.primary_colour === "White"){
 		if(inputProblem.led){
